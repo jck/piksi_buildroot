@@ -35,6 +35,7 @@
 #include "ntrip.h"
 #include "skylark.h"
 #include "whitelists.h"
+#include "cellmodem.h"
 
 #define PROGRAM_NAME "piksi_system_daemon"
 #define PROTOCOL_LIBRARY_PATH "/usr/lib/zmq_protocols"
@@ -836,6 +837,8 @@ int main(void)
   ntrip_init(settings_ctx);
   skylark_init(settings_ctx);
   whitelists_init(settings_ctx);
+  cellmodem_init(settings_ctx);
+
   img_tbl_settings_setup(settings_ctx);
   sbp_zmq_rx_callback_register(sbp_zmq_pubsub_rx_ctx_get(pubsub_ctx),
                                SBP_MSG_COMMAND_REQ, sbp_command, pubsub_ctx, NULL);
